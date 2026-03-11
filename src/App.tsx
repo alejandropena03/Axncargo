@@ -93,7 +93,7 @@ export default function App() {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-black/50 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-white text-black flex items-center justify-center rounded-sm font-display font-bold text-xl tracking-tighter">
+            <div className="w-8 h-8 bg-black text-white border border-white/20 flex items-center justify-center rounded-sm font-display font-bold text-xl tracking-tighter">
               A
             </div>
             <span className="font-display font-bold text-xl tracking-widest text-white">XN Cargo</span>
@@ -560,7 +560,7 @@ export default function App() {
             {/* Contact Column */}
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 bg-white text-black flex items-center justify-center rounded-sm font-display font-bold text-xl tracking-tighter">
+                <div className="w-8 h-8 bg-black text-white border border-white/20 flex items-center justify-center rounded-sm font-display font-bold text-xl tracking-tighter">
                   A
                 </div>
                 <span className="font-display font-bold text-xl tracking-widest text-white">XN Cargo</span>
