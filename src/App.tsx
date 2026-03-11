@@ -27,7 +27,7 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  const [serviceType, setServiceType] = useState('');
+  const [serviceType, setServiceType] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -37,7 +37,7 @@ export default function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -45,7 +45,7 @@ export default function App() {
     }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
