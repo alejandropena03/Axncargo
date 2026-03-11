@@ -45,13 +45,35 @@ export default function App() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    try {
+      const response = await fetch('https://formspree.io/f/xwvrldnv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...formData,
+          serviceType: serviceType
+        })
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al enviar el formulario');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Hubo un problema al enviar su solicitud. Por favor, inténtelo de nuevo o contáctenos directamente.');
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1500);
+    }
   };
 
   const isValid = (field: keyof typeof formData) => String(formData[field]).length > 0;
@@ -165,7 +187,7 @@ export default function App() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <h2 className="text-3xl md:text-5xl font-display font-light text-white mb-6">Sobre Nosotros</h2>
+              <h2 className="text-3xl md:text-5xl font-display font-light text-white mb-6">Sobre Nosotros | Logística en Canadá y Latam</h2>
               <p className="text-zinc-400 text-lg font-light leading-relaxed mb-6">
                 En AXN Cargo, somos su socio logístico de confianza con una trayectoria consolidada de más de 15 años en el sector, conectando de manera efectiva a Latinoamérica, Colombia, Canadá y Estados Unidos.
               </p>
@@ -201,7 +223,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div>
-              <h2 className="text-3xl md:text-5xl font-display font-light text-white mb-6">Soluciones Especializadas</h2>
+              <h2 className="text-3xl md:text-5xl font-display font-light text-white mb-6">Soluciones como Agente de Carga en Canadá y Latam</h2>
               <p className="text-zinc-400 max-w-xl text-lg font-light">
                 Diseñamos estrategias logísticas a la medida para cada tipo de cliente en la cadena de suministro internacional.
               </p>
